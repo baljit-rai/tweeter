@@ -3,31 +3,97 @@
   <head>
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
+    <meta charset="UTF-8">
+    <title>Twitter Client</title>
+      <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700,700i" rel="stylesheet">
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/compser-char-counter.js"></script>
   </head>
 
   <body>
 
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png" width="80px" height="80px">
+      <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
     </nav>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-    </main>
+      <section class="new-tweet">
+        <h2>Compose Tweet</h2>
+        <form method="POST" action="/tweets">
+          <textarea name="text" placeholder="What are you humming about?"></textarea>
+          <input type="submit" value="Tweet">
+          <span class="counter">140</span>
+        </form>
+      </section>
 
+     <!--  <section class="all-tweets">
+        <h1>All tweets</h1>
+        <article class="tweet">
+          <header class="tweet-header">
+            <a href="#">
+              <img class="user-avatar" src="http://fillmurray.com/48/48" alt="Bill Murray">
+            </a>
+            <a class="user-name" href="#">Bill Murray</a>
+            <a class="user-handle" href="#">@bill_murray</a>
+          </header>
+          <main class="tweet-content">
+            <p>Don't think about your errors or failures; otherwise, you'll never do a thing.</p>
+          </main>
+          <footer class="tweet-footer">
+            <div class="tweet-timestamp">
+              <a href="#">1 day ago</a>
+            </div>
+            <div class="tweet-actions">
+              <a class="tweet-action" href="#">Like</a>
+              <a class="tweet-action" href="#">Flag</a>
+              <a class="tweet-action" href="#">Retweet</a>
+            </div>
+          </footer>
+        </article>
+      </section> -->
+
+      <span class="first">
+      <span class="icon-edit new"></span>
+    </span>
+    <ul class="timeline">
+      <li>
+        <div class="avatar">
+          <img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
+          <div class="hover">
+            <div class="icon-twitter"></div>
+          </div>
+        </div>
+        <div class="bubble-container">
+          <div class="bubble">
+          <div class="retweet">
+            <div class="icon-retweet"></div>
+          </div>
+            <h3>@russel</h3> retweeted <h3>@doug</h3><br/>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, iusto, maxime, ullam autem a voluptate rem quos repudiandae.
+            <div class="over-bubble">
+              <div class="icon-mail-reply action"></div>
+              <div class="icon-retweet action"></div>
+              <div class="icon-star"></div>
+            </div>
+          </div>
   </body>
 </html>
