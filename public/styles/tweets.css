@@ -19,44 +19,32 @@ html {
 
 
 
+
+
+
+
+
 /*
  * Global layout stuff
  */
 
 body {
-    margin: 0;
-    background-color: #eee;
     font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+    color: #244751;
+    background-color: #eee;
 }
 
-body .container {
+
+/*body .container {
     position: static;
     width: 450px;
-    height: 10%;
+    padding-top: 8%;
     margin: auto;
-    align-content: center;
-    float: center;
     background-color: white;
     text-align: center;
-    padding-top: 80px;
-}
-
-
-
-/*main form .placeholder {
-    color: blue;
-}*/
-
-p {
     color: black;
-}
-
-
-
-
-
-
-
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+    float: center;
+    padding-right: 2em;
+    padding-left: 2em;
+}*/
