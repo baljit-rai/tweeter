@@ -17,8 +17,7 @@ $(function() {
     x = $("#text-input").val().length;
     if (x === 0) {
       alert("Can not post blank tweets");
-    }
-    if (x > 140) {
+    } else if (x > 140) {
       alert("Can't submit a tweet longer than 140 characters")
     } else {
 
@@ -34,7 +33,7 @@ $(function() {
         }
       })
 
-      $("#text-input").val('');
+      // $("#text-input").val('');
     }
 
   })
@@ -68,11 +67,19 @@ $(function() {
 
   }
 
-  function renderTweets(tweets) {
-    tweets.forEach(function(eachT) {
-      let $tweet = createTweetElement(eachT);
-      $('#tweets-container').prepend($tweet);
+  function renderTweets() {
 
+    console.log('HERE!');
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      success: function(tweets) {
+        tweets.forEach(function(eachT) {
+          let $tweet = createTweetElement(eachT);
+          $('#tweets-container').prepend($tweet);
+
+        })
+      }
     });
   }
 
@@ -83,8 +90,7 @@ $(function() {
       success: function(data) {
         var arr = data[data.length - 1];
         var $newTweet = createTweetElement(arr);
-        $('#container').prepend($newTweet);
-        renderTweets(data);
+        $('#tweets-container').prepend($newTweet);
       }
     });
   }
@@ -104,8 +110,8 @@ $(function() {
 
 
 
-  loadTweets();
+  // loadTweets();
 
-  renderTweets(tweetData);
+  renderTweets();
 
 });
