@@ -8,6 +8,7 @@
     text-align: center;
     margin: auto;
     margin-bottom: 3%;
+    display: none;
 }
 
 .new-tweet h2 {
@@ -78,6 +79,7 @@ input {
     text-align: justify;
     padding-left: 10px;
     padding-right: 10px;
+    word-wrap: break-word;
 }
 
 .tweet h1 {
