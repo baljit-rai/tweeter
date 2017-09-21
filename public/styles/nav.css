@@ -21,3 +21,12 @@
     font-size: 2em;
     padding-left: 10px;
 }
+
+.compose {
+
+
+    background-color: #DAF7A6;
+    float: right;
+    margin-top: 3%;
+    font-size: 1em;
+}
