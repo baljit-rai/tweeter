@@ -53,23 +53,34 @@ $(function() {
   //   "created_at": 1461113796368
   // }];
 
-  $("form").submit(function() { //serialize input into string obj NOT JSON
+  $("form").submit(function(event) { //serialize input into string obj NOT JSON
 
     event.preventDefault();
 
-    var tweetString = $("form").serialize();
-    $.ajax({
-      method: 'POST',
-      url: '/tweets',
-      data: tweetString,
-      /*     dataType: 'json',*/
-      encode: true,
-      success: function() {
-        $("tweet-input").value = "";
-        loadTweets();
-      }
+    var x;
+    x = $("#text-input").val().length;
+    if (x === 0) {
+      alert("Can not post blank tweets");
+    }
+    if (x > 140) {
+      alert("Can't submit a tweet longer than 140 characters")
+    } else {
 
-    })
+      var tweetString = $("form").serialize();
+      $.ajax({
+        method: 'POST',
+        url: '/tweets',
+        data: tweetString,
+        encode: true,
+        success: function() {
+          $("tweet-input").value = "";
+          loadTweets();
+        }
+      })
+
+      $("#text-input").val('');
+    }
+
   })
 
 
@@ -122,15 +133,7 @@ $(function() {
     });
   }
 
-  var $button = $('#button');
-  $button.on('click', function() {
-    var x;
-    x = $("#text-input").val().length;
-    if (x === 0) {
-      alert("Can not post blank tweets");
-      return false;
-    }
-  });
+
 
   loadTweets();
 
