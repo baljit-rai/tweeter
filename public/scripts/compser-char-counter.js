@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('textarea').keyup(function() {
+  $('textarea').keydown(function() {
     var left = 140 - $(this).val().length;
     if (left < 0) {
       $('.counter').css('color', 'red');

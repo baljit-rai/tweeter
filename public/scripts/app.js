@@ -28,7 +28,8 @@ $(function() {
         data: tweetString,
         encode: true,
         success: function() {
-          $("tweet-input").value = "";
+          $("#text-input").val("");
+          $(".counter").text("140");
           loadTweets();
         }
       })
@@ -57,7 +58,7 @@ $(function() {
       .append($("<i>").addClass("fa fa-heart"))
 
     var $footer = $("<footer>").addClass("tweet-footer")
-      .append($("<div>").addClass("tweet-timestamp").text(tweet.created_at))
+      .append($("<div>").addClass("tweet-timestamp").text((moment(tweet.created_at).fromNow())))
       .append($("<div>").addClass("tweet-actions"))
       .append($icons);
 
@@ -91,6 +92,7 @@ $(function() {
         var arr = data[data.length - 1];
         var $newTweet = createTweetElement(arr);
         $('#tweets-container').prepend($newTweet);
+        $('#tweets-container .tweet:first-child').hide().slideDown();
       }
     });
   }
