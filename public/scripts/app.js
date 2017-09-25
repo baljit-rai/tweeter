@@ -8,49 +8,65 @@
 
 $(function() {
 
-
+  //form validation for counter and post function for tweets.
   $("form").submit(function(event) { //serialize input into string obj NOT JSON
 
-    event.preventDefault();
+      event.preventDefault();
 
-    var x;
-    x = $("#text-input").val().length;
-    if (x === 0) {
-      alert("Can not post blank tweets");
-    } else if (x > 140) {
-      alert("Can't submit a tweet longer than 140 characters")
+      var x;
+      x = $("#text-input").val().length;
+      if (x === 0) {
+        alert("Can not post blank tweets");
+      } else if (x > 140) {
+        alert("Can't submit a tweet longer than 140 characters")
+      } else {
+
+        var tweetString = $("form").serialize();
+        $.ajax({
+          method: 'POST',
+          url: '/tweets',
+          data: tweetString,
+          encode: true,
+          success: function() {
+            $("#text-input").val("");
+            $(".counter").text("140");
+            loadTweets();
+          }
+        })
+
+      }
+
+    })
+
+  //slide down toggle to add compose tweet container
+  $('.compose').on("click", function(event) {
+    event.preventDefault()
+    if ($(".new-tweet").is(":hidden")) {
+      $(".new-tweet").slideDown("slow");
+      //focus on that text area
+      $('#text-input').focus();
     } else {
-
-      var tweetString = $("form").serialize();
-      $.ajax({
-        method: 'POST',
-        url: '/tweets',
-        data: tweetString,
-        encode: true,
-        success: function() {
-          $("#text-input").val("");
-          $(".counter").text("140");
-          loadTweets();
-        }
-      })
-
-      // $("#text-input").val('');
+      $(".new-tweet").slideUp("slow");
     }
+  });
 
-  })
-
-
+  //create article and append all the elements needed to compose the layout of a tweet
   function createTweetElement(tweet) {
 
     var $article = $("<article>").addClass("tweet")
+      .append($("<img>").addClass("user-avatar").attr("src", tweet.user.avatars.small))
 
     var $header = $("<header>").addClass("tweet-header")
-      .append($("<img>").addClass("user-avatar").attr("src", tweet.user.avatars.small))
-      .append($("<h1>").addClass("user-name").text(tweet.user.name))
-      .append($("<span>").addClass("user-handle").text(tweet.user.handle))
+
+    .append($("<div>").addClass("user-name").text(tweet.user.name))
+      .append($("<p>").addClass("user-handle").text(tweet.user.handle))
+
+
 
     var $main = $("<main>").addClass("tweet-content")
-      .append($("<div>").addClass("tweet-content").text(tweet.content.text))
+
+
+    .append($("<p>").addClass("tweet-content").text(tweet.content.text))
 
     var $icons = $("<div>").addClass("tweet-actions")
       .append($("<i>").addClass("fa fa-flag"))
@@ -68,6 +84,21 @@ $(function() {
 
   }
 
+  // get request to load tweets into memory, and have them ready for rendering
+  function loadTweets() {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      success: function(data) {
+        var arr = data[data.length - 1];
+        var $newTweet = createTweetElement(arr);
+        $('#tweets-container').prepend($newTweet);
+        $('#tweets-container .tweet:first-child').hide().slideDown();
+      }
+    });
+  }
+
+  // render and prepend tweets to #tweets-container
   function renderTweets() {
 
     console.log('HERE!');
@@ -83,36 +114,6 @@ $(function() {
       }
     });
   }
-
-  function loadTweets() {
-    $.ajax({
-      url: '/tweets',
-      method: 'GET',
-      success: function(data) {
-        var arr = data[data.length - 1];
-        var $newTweet = createTweetElement(arr);
-        $('#tweets-container').prepend($newTweet);
-        $('#tweets-container .tweet:first-child').hide().slideDown();
-      }
-    });
-  }
-
-  //slide down toggle to add compose tweet container
-  $('.compose').on("click", function(event) {
-    event.preventDefault()
-    if ($(".new-tweet").is(":hidden")) {
-      $(".new-tweet").slideDown("slow");
-      //focus on that text area
-      $('#text-input').focus();
-    } else {
-      $(".new-tweet").slideUp("slow");
-    }
-  });
-
-
-
-
-  // loadTweets();
 
   renderTweets();
 

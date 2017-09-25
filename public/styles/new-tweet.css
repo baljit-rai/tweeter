@@ -16,7 +16,7 @@
 
 .new-tweet h2 {
 
-    width: 94%;
+    width: 100%;
     text-align: left;
     padding-top: 0.5em;
     margin-left: 3%;
@@ -43,15 +43,20 @@ textarea {
     color: #f5f5f5;
 }
 
+.input:focus {
+  outline: none;
+}
+
 
 .tweet {
-    margin-top: 2em;
+
+    margin-top: 1%;
     overflow: hidden;
     border-radius: 7px;
     border-style: solid;
-    border-color: #a8a8a8;
-    margin-right: 2em;
-    margin-left: 2em;
+    border-color: #ffffff;
+    margin-right: 1%;
+    margin-left: 1%;
     color: #333333;
     opacity: 0.8;
     transition: opacity 0.2s linear;
@@ -68,33 +73,43 @@ textarea {
     display: inline-block;
     border-radius: 5px;
     margin-left: 70%;
+    position: relative;
+    font-weight: bolder;
+    padding-right: 3px;
 }
 
+.user-name {
+
+  text-align: left;
+  font-weight: bolder;
+}
 .user-avatar {
 
-    display: inline-block;
-    border-radius: 5px;
-    margin-right: 85%;
-    margin-top: 1%;
-    height: 60px;
-    width: 60px;
-
+  width: 18%;
+  float: left;
+  margin-top: 12%;
+  border: 5px solid #ecf0f1;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin-left: 2%;
 }
 
+
 .tweet-content {
-    background-color: grey;
-/*    margin-right: 5%;
-    text-align: justify;
-    padding-left: 10px;
-    padding-right: 10px;
-    word-wrap: break-word;*/
+  background-color: #ffffff;
+  word-wrap: break-word;
+  border-radius: 8px;
+  text-align: left;
   width: 75%;
   display: block;
   position: relative;
   padding-left: 20px;
   vertical-align: top;
   display: inline-block;
-  margin:10%;
+  margin: 10%;
+
 }
 
 .tweet h1 {
@@ -108,6 +123,7 @@ textarea {
 
     display: inline-block;
     margin-left: -45%;
+
 }
 
 .tweet:hover .tweet-actions {
@@ -118,8 +134,10 @@ textarea {
 
 
 .tweet-actions {
+
+    margin-top: 3%;
     float: right;
-    color: #00a087;
+    color: black;
     opacity: 0;
     transition: opacity 0.2s linear;
 }
@@ -131,13 +149,16 @@ textarea {
 }
 
 .tweet-header {
-    padding: 1%;
-    background-color: #eee;
+
+    padding: 3%;
+    background-color: white;
 }
 
 .tweet-footer {
+
     border-top: .5px solid grey;
     padding: 0.5em;
+    background-color: white;
 }
 
 

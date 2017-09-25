@@ -25,7 +25,7 @@ html {
 
 body {
     margin: 0;
-    background-color: #eee;
+    background-color: #ffffff;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -36,16 +36,16 @@ body .container {
     margin: auto;
     align-content: center;
     float: center;
-    background-color: white;
+    background:linear-gradient(to right, #f985aa 0%, #ffa888 100%);
     text-align: center;
     padding-top: 80px;
 }
 
 
 
-/*main form .placeholder {
+main form .placeholder {
     color: blue;
-}*/
+}
 
 p {
     color: black;
